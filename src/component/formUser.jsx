@@ -1,14 +1,12 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Title from './Title';
 
-const FormUser = () => {
+const FormUser = ({action}) => {
     const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
@@ -20,8 +18,9 @@ const FormUser = () => {
 
   return (
     <div>
+        <Title>User</Title>
           <Typography component="h1" variant="h5">
-              Sign up
+              {action}
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
@@ -68,12 +67,6 @@ const FormUser = () => {
                           autoComplete="new-password"
                       />
                   </Grid>
-                  <Grid item xs={12}>
-                      <FormControlLabel
-                          control={<Checkbox value="allowExtraEmails" color="primary" />}
-                          label="I already read documentation"
-                      />
-                  </Grid>
               </Grid>
               <Button
                   type="submit"
@@ -81,15 +74,8 @@ const FormUser = () => {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
               >
-                  Sign Up
+                  Save
               </Button>
-              <Grid container justifyContent="flex-end">
-                  <Grid item>
-                      <Link href="/" variant="body2">
-                          Already have an account? Sign in
-                      </Link>
-                  </Grid>
-              </Grid>
           </Box>
     </div>
   )
