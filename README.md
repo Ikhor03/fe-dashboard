@@ -1,4 +1,4 @@
-<h3 align="center">Dapur Solo</h3>
+<h3 align="center">DASHBOARD USERS</h3>
 
 <!-- ABOUT THE PROJECT -->
 
@@ -17,7 +17,8 @@ This is a project that implements a user management system. End users can create
 <!-- GETTING STARTED -->
 ## Getting Started
 
-You will be redirected to the login page when running the application. to test all features, please login with this account :
+You will be redirected to the login page when running the application. to test all features, please login with this account
+
 email:
 ```
 admin@super
