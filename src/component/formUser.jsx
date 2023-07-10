@@ -40,15 +40,21 @@ const FormUser = ({ action, id }) => {
                     };
                 });
             } else {
-                await axios.update(`${url}/api/user`, {
+                await axios.put(`${url}/api/user/${id}`, {
                     name,
                     email,
                     password,
                     confirmPassword,
                     role
-                }).then(res => alert(res.data.message));
-                console.log(id);
-                navigate("/users");
+                }).then(res => {
+                    console.log(res.data)
+                    if (res.data.error) {
+                        setMsg(res.data.message)
+                    } else {
+                        alert(res.data.message)
+                        navigate("/users");
+                    };
+                });
             }
         } catch (error) {
             if (error.response) {

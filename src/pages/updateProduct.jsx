@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 
 const UpdateProduct = () => {
     const {id} = useParams();
-    console.log(id)
     return (
         <Layout>
             <FormProduct action={"Update Item"} id = {id} />

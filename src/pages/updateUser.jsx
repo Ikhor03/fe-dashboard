@@ -4,10 +4,10 @@ import FormUser from '../component/formUser';
 import { useParams } from 'react-router-dom';
 
 const UpdateUser = () => {
-    const id = useParams();
+    const {id} = useParams();
     return (
         <Layout>
-            <FormUser action={"Update"} id = {id} />
+            <FormUser action={"Update"} id={id} />
         </Layout>
     )
 }
