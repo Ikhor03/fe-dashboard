@@ -1,3 +1,35 @@
+<h3 align="center">Dapur Solo</h3>
+
+<!-- ABOUT THE PROJECT -->
+
+This is a project that implements a user management system. End users can create, read, update, and delete based on their respective roles. Must be run on port 3000 at ["localhost:3000"](http://127.0.0.1:3000), so you won't have any problems with CORS origin.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+* [Create React App](https://github.com/facebook/create-react-app)
+* [Redux Toolkit](https://redux-toolkit.js.org/)
+* [Material UI](https://mui.com/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+You will be redirected to the login page when running the application. to test all features, please login with this account :
+email:
+```
+admin@super
+```
+Pass
+```
+12345
+```
+
+
+
+
 # Getting Started with Create React App and Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
