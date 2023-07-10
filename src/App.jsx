@@ -7,6 +7,8 @@ import NoPage from "./pages/NoPage"
 import UpdateUser from "./pages/updateUser";
 import AddProduct from "./pages/addProduct";
 import UpdateProduct from "./pages/updateProduct";
+import Products from "./pages/Products";
+import Users from "./pages/Users";
 
 export default function App() {
   return (
@@ -15,6 +17,8 @@ export default function App() {
         <Route index element={<LoginPage />} />
         <Route path="dashboard" element={<Dasboard />} />
         <Route path="register" element={<Register />} />
+        <Route path="users" element={<Users />} />
+        <Route path="products" element={<Products />} />
         <Route path="user/add" element={<AddUser />} />
         <Route path="user/edit/:id" element={<UpdateUser />} />
         <Route path="product/add" element={<AddProduct />} />

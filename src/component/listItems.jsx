@@ -23,7 +23,7 @@ export const generalListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton href='../../../product'>
+    <ListItemButton href='../../../products'>
       <ListItemIcon>
         <Sell />
       </ListItemIcon>
@@ -37,7 +37,7 @@ export const adminListItems = (
     <ListSubheader component="div" inset>
       ADMIN
     </ListSubheader>
-    <ListItemButton href='../../../user'>
+    <ListItemButton href='../../../users'>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
@@ -46,8 +46,8 @@ export const adminListItems = (
   </React.Fragment>
 );
 
+//function Logout button
 export const LogoutButton = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const { user } = useSelector((state) => state.auth);

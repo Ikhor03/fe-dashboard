@@ -89,7 +89,7 @@ export default function Layout({children}) {
   // PROTECT DASHBOARD (Have to Login)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError } = useSelector(
+  const { isError, user } = useSelector(
     (state) => state.auth
   );
 
@@ -134,7 +134,7 @@ export default function Layout({children}) {
             <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
               Dashboard
             </Typography>
-            <Typography>Hi, Ikhor</Typography>
+            <Typography>Hi, {user?.name}</Typography>
             <IconButton color="inherit">
               <Badge badgeContent={0} color="secondary">
                 <Person />
@@ -159,7 +159,8 @@ export default function Layout({children}) {
           <List component="nav">
             {generalListItems}
             <Divider sx={{ my: 1 }} />
-            {adminListItems}
+            {user?.role && user.role === "admin" && adminListItems }
+            {/* {adminListItems} */}
             <Divider sx={{ my: 1 }} />
             {settingListItems}
           </List>

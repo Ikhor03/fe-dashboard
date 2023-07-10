@@ -53,8 +53,7 @@ export default function Products() {
           <TableRow>
             <TableCell>No</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Role</TableCell>
+            <TableCell>Price</TableCell>
             <TableCell align="right">Action</TableCell>
           </TableRow>
         </TableHead>
