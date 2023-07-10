@@ -18,6 +18,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { generalListItems, adminListItems, settingListItems } from "../component/listItems";
 import { Person } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "../features/authSlice";
 
 function Copyright(props) {
   return (
@@ -35,6 +38,7 @@ function Copyright(props) {
 
 const drawerWidth = 240;
 
+//SIDEBAR
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -81,6 +85,25 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 const defaultTheme = createTheme();
 
 export default function Layout({children}) {
+
+  // PROTECT DASHBOARD (Have to Login)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector(
+    (state) => state.auth
+  );
+
+  React.useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    if (isError) {
+      navigate("/");
+    }
+  }, [isError, navigate]);
+//-------------
+
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);

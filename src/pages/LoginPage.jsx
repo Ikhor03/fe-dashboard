@@ -20,21 +20,17 @@ import { Login, reset } from "../features/authSlice";
 const defaultTheme = createTheme();
 
 export default function LoginPage() {
-  const [email, setEmail] = React.useState();
-  const [password, setPass] = React.useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, isError, isSuccess, isLoading, message } = useSelector(
     (state) => state.auth
   );
 
-  const handleChange = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     let email = data.get("email");
     let password = data.get("password");
-    setEmail(email);
-    setPass(password);
     dispatch(Login({ email, password }));
     // console.log(email,password);
     // console.log(user, isError, isSuccess, isLoading, message)
@@ -81,7 +77,7 @@ export default function LoginPage() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={handleChange} sx={{ mt: 1 }}>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
               <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
               <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />

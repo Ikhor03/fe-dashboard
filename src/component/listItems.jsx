@@ -4,25 +4,26 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import { Logout, Sell } from '@mui/icons-material';
+import { LogoutTwoTone, Sell } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Logout, reset } from '../features/authSlice';
+// import { LogoutButton } from './LogoutButton';
+
 
 export const generalListItems = (
   <React.Fragment>
     <ListSubheader component="div" inset>
       GENERAL
     </ListSubheader>
-    <ListItemButton>
+    <ListItemButton href='../../../dashboard'>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton href='../../../product'>
       <ListItemIcon>
         <Sell />
       </ListItemIcon>
@@ -36,7 +37,7 @@ export const adminListItems = (
     <ListSubheader component="div" inset>
       ADMIN
     </ListSubheader>
-    <ListItemButton>
+    <ListItemButton href='../../../user'>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
@@ -45,16 +46,33 @@ export const adminListItems = (
   </React.Fragment>
 );
 
+export const LogoutButton = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // const { user } = useSelector((state) => state.auth);
+
+  const fetchLogout = () => {
+    dispatch(Logout());
+    dispatch(reset());
+    navigate("/");
+  };
+
+  return (
+    <ListItemButton>
+      <ListItemIcon>
+        <LogoutTwoTone />
+      </ListItemIcon>
+      <ListItemText primary="Logout" onClick={fetchLogout} />
+    </ListItemButton>
+  )
+}
+
 export const settingListItems = (
   <React.Fragment>
     <ListSubheader component="div" inset>
       SETTING
     </ListSubheader>
-    <ListItemButton>
-      <ListItemIcon>
-        <Logout />
-      </ListItemIcon>
-      <ListItemText primary="Logout" />
-    </ListItemButton>
+    <LogoutButton />
   </React.Fragment>
 );
