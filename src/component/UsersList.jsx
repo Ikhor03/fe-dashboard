@@ -6,45 +6,26 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
+import axios from 'axios';
+const url = process.env.REACT_APP_ENDPOINT;
 
-// Generate Order Data
-function createData(id, name, email, role) {
-  return { id, name, email, role };
-}
-
-const rows = [
-  createData(
-    0,
-    'Elvis Presley',
-    'Tupelo, MS',
-    'VISA ⠀•••• 3719',
-  ),
-  createData(
-    1,
-    'Paul McCartney',
-    'London, UK',
-    'VISA ⠀•••• 2574',
-  ),
-  createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-  createData(
-    3,
-    'Michael Jackson',
-    'Gary, IN',
-    'AMEX ⠀•••• 2000',
-  ),
-  createData(
-    4,
-    'Bruce Springsteen',
-    'Long Branch, NJ',
-    'VISA ⠀•••• 5919',
-  ),
-];
-
-function preventDefault(event) {
-  event.preventDefault();
+// DELETE USER --- FUNCTION
+async function destroy (id) {
+  await axios.delete(`${url}/api/user/${id}`)
 }
 
 export default function Users() {
+  const [users, setUsers] = React.useState();
+  // fetching Users...
+  React.useEffect(() => {
+    getUsers();
+  }, []);
+
+  const getUsers = async () => {
+    const res = await axios.get(`${url}/api/user`);
+    setUsers(res.data);
+  }
+
   return (
     <React.Fragment>
       <Title>User</Title>
@@ -59,15 +40,18 @@ export default function Users() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.id}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.email}</TableCell>
-              <TableCell>{row.role}</TableCell>
+          {users?.map((user) => (
+            <TableRow key={user.uuid}>
+              <TableCell>{user.id}</TableCell>
+              <TableCell>{user.name}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.role}</TableCell>
               <TableCell align="right">
-                <Link color="primary" href="edit" onClick={preventDefault} sx={{ mt: 3 }}>
-                  Edit
+                <Link color="primary" href={`product/edit/${user.uuid}`} sx={{ mt: 1 }}>
+                  Edit |
+                </Link>
+                <Link color="error" href="#" onClick={() => destroy(user.uuid)} sx={{ mt: 1 }}>
+                  | Delete
                 </Link>
               </TableCell>
             </TableRow>
