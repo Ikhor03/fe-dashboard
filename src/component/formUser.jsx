@@ -14,6 +14,24 @@ const FormUser = ({ action, id }) => {
     const navigate = useNavigate();
     const [msg, setMsg] = React.useState('');
     const [role, setRole] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [email, setEmail] = React.useState('');
+
+    React.useEffect(() => {
+        const getUserById = async () => {
+            try {
+                const response = await axios.get(`${url}/api/user/${id}`);
+                setName(response.data.name);
+                setEmail(response.data.email);
+                setRole(response.data.role);
+            } catch (error) {
+                if (error.response) {
+                    setMsg(error.response.data.message);
+                }
+            }
+        };
+        id && getUserById();
+    }, [id]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -47,7 +65,6 @@ const FormUser = ({ action, id }) => {
                     confirmPassword,
                     role
                 }).then(res => {
-                    console.log(res.data)
                     if (res.data.error) {
                         setMsg(res.data.message)
                     } else {
@@ -85,6 +102,8 @@ const FormUser = ({ action, id }) => {
                             id="name"
                             label="Name"
                             autoFocus
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -95,6 +114,8 @@ const FormUser = ({ action, id }) => {
                             label="Email Address"
                             name="email"
                             autoComplete="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </Grid>
 

@@ -15,7 +15,7 @@ const url = process.env.REACT_APP_ENDPOINT;
 async function Destroy(id) {
   await axios.delete(`${url}/api/product/${id}`)
   alert('deleted')
-
+  window.location.reload(false);
 }
 
 export default function Products() {

@@ -8,7 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 import axios from 'axios';
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 const url = process.env.REACT_APP_ENDPOINT;
 
 export default function Users() {
@@ -33,7 +32,7 @@ export default function Users() {
   return (
     <React.Fragment>
       <Title>
-        Products <br />
+        Users <br />
         <Button
           variant="contained"
           color="primary"

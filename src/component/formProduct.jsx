@@ -12,6 +12,23 @@ const FormProduct = ({ action, id }) => {
     const url = process.env.REACT_APP_ENDPOINT;
     const navigate = useNavigate();
     const [msg, setMsg] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [price, setPrice] = React.useState('');
+
+    React.useEffect(() => {
+        const getProductById = async () => {
+            try {
+                const response = await axios.get(`${url}/api/product/${id}`);
+                setName(response.data.name);
+                setPrice(response.data.price);
+            } catch (error) {
+                if (error.response) {
+                    setMsg(error.response.data.msg);
+                }
+            }
+        };
+        id && getProductById();
+    }, [id]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -58,6 +75,8 @@ const FormProduct = ({ action, id }) => {
                             id="name"
                             label="Product Name"
                             autoFocus
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -68,6 +87,8 @@ const FormProduct = ({ action, id }) => {
                             label="Price"
                             name="price"
                             autoComplete="price"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
                         />
                     </Grid>
                 </Grid>
