@@ -32,8 +32,6 @@ export default function LoginPage() {
     let email = data.get("email");
     let password = data.get("password");
     dispatch(Login({ email, password }));
-    // console.log(email,password);
-    // console.log(user, isError, isSuccess, isLoading, message)
   };
 
   React.useEffect(() => {

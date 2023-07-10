@@ -49,10 +49,9 @@ export const adminListItems = (
 export const LogoutButton = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const { user } = useSelector((state) => state.auth);
 
-  const fetchLogout = async () => {
-    dispatch(await Logout());
+  const fetchLogout = () => {
+    dispatch(Logout());
     navigate("/");
     dispatch(reset());
   };
