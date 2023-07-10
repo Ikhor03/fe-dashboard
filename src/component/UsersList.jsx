@@ -7,8 +7,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 import axios from 'axios';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 const url = process.env.REACT_APP_ENDPOINT;
 
+// const navigate = useNavigate();
 // DELETE USER --- FUNCTION
 async function destroy (id) {
   await axios.delete(`${url}/api/user/${id}`)
@@ -28,7 +31,16 @@ export default function Users() {
 
   return (
     <React.Fragment>
-      <Title>User</Title>
+      <Title>
+        Products <br />
+        <Button
+          variant="contained"
+          color="primary"
+          size="medium"
+          href="/user/add"
+        >ADD NEW</Button>
+      </Title>
+
       <Table size="medium">
         <TableHead>
           <TableRow>

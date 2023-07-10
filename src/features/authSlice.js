@@ -38,15 +38,7 @@ export const getMe = createAsyncThunk('user/getMe', async (_, thunkAPI) => {
 })
 
 export const Logout = createAsyncThunk('user/Logout', async (_, thunkAPI) => {
-    try {
-        const response = await axios.delete(`${url}/auth/logout`);
-        return response.data;
-    } catch (error) {
-        if (error.response) {
-            const message = error.response.data.message;
-            return thunkAPI.rejectWithValue(message);
-        }
-    }
+        await axios.delete(`${url}/auth/logout`);
 })
 
 export const authSlice = createSlice({
@@ -80,7 +72,7 @@ export const authSlice = createSlice({
         builder.addCase(Logout.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.message = action.payload;
+            // state.message = action.payload;
         })
         builder.addCase(Logout.rejected, (state, action) => {
             state.isLoading = false;

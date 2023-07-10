@@ -5,15 +5,31 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Title from './Title';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const FormProduct = ({ action }) => {
-    const handleSubmit = (event) => {
+    const url = process.env.REACT_APP_ENDPOINT;
+    const navigate = useNavigate();
+    const [msg, setMsg] = React.useState('');
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
+        let name = data.get("name");
+        let price = data.get("price");
+
+        try {
+            await axios.post(`${url}/api/product`, {
+                name: name,
+                price: price,
+            });
+            navigate("/products");
+        } catch (error) {
+            if (error.response) {
+                setMsg(error.response.data.message);
+            }
+        }
     };
 
     return (
@@ -22,6 +38,7 @@ const FormProduct = ({ action }) => {
             <Typography component="h1" variant="h5">
                 {action}
             </Typography>
+            <p style={{ color: "red" }}>{msg}</p>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>

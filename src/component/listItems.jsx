@@ -9,7 +9,6 @@ import { LogoutTwoTone, Sell } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Logout, reset } from '../features/authSlice';
-// import { LogoutButton } from './LogoutButton';
 
 
 export const generalListItems = (
@@ -52,10 +51,10 @@ export const LogoutButton = () => {
   const navigate = useNavigate();
   // const { user } = useSelector((state) => state.auth);
 
-  const fetchLogout = () => {
-    dispatch(Logout());
-    dispatch(reset());
+  const fetchLogout = async () => {
+    dispatch(await Logout());
     navigate("/");
+    dispatch(reset());
   };
 
   return (
