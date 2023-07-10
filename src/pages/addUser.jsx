@@ -5,7 +5,7 @@ import FormUser from '../component/formUser';
 const AddUser = () => {
   return (
     <Layout>
-        <FormUser action={"Add New User"}/>
+      <FormUser action={"Add New User"} />
     </Layout>
   )
 }

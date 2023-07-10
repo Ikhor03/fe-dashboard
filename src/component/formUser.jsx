@@ -20,7 +20,6 @@ const FormUser = ({ action, id }) => {
         const data = new FormData(event.currentTarget);
         let name = data.get("name");
         let email = data.get("email");
-        // let role = data.get("role");
         let password = data.get("password");
         let confirmPassword = data.get("confirmPassword");
         
@@ -32,8 +31,23 @@ const FormUser = ({ action, id }) => {
                     password,
                     confirmPassword,
                     role
+                }).then(res => {
+                    if (res.data.error) {
+                        setMsg(res.data.message)
+                    } else {
+                        alert(res.data.message)
+                        navigate("/users");
+                    };
+                });
+            } else {
+                await axios.update(`${url}/api/user`, {
+                    name,
+                    email,
+                    password,
+                    confirmPassword,
+                    role
                 }).then(res => alert(res.data.message));
-                // console.log(name, email, role, password, confirmPassword)
+                console.log(id);
                 navigate("/users");
             }
         } catch (error) {
