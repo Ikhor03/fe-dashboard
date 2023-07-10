@@ -8,7 +8,7 @@ import Title from './Title';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const FormProduct = ({ action }) => {
+const FormProduct = ({ action, id }) => {
     const url = process.env.REACT_APP_ENDPOINT;
     const navigate = useNavigate();
     const [msg, setMsg] = React.useState('');
@@ -20,11 +20,19 @@ const FormProduct = ({ action }) => {
         let price = data.get("price");
 
         try {
-            await axios.post(`${url}/api/product`, {
-                name: name,
-                price: price,
-            });
-            navigate("/products");
+            if (!id) {
+                await axios.post(`${url}/api/product`, {
+                    name,
+                    price,
+                }).then(res => alert(res.data.message));
+                navigate("/products");
+            } else {
+                await axios.put(`${url}/api/product/${id}`, {
+                    name,
+                    price,
+                }).then(res => alert(res.data.message));
+                navigate("/products");
+            }
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.message);

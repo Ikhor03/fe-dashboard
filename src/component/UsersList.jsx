@@ -11,10 +11,11 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 const url = process.env.REACT_APP_ENDPOINT;
 
-// const navigate = useNavigate();
 // DELETE USER --- FUNCTION
-async function destroy (id) {
+async function Destroy (id) {
+  const navigate = useNavigate();
   await axios.delete(`${url}/api/user/${id}`)
+  navigate('/users')
 }
 
 export default function Users() {
@@ -62,7 +63,7 @@ export default function Users() {
                 <Link color="primary" href={`product/edit/${user.uuid}`} sx={{ mt: 1 }}>
                   Edit |
                 </Link>
-                <Link color="error" href="#" onClick={() => destroy(user.uuid)} sx={{ mt: 1 }}>
+                <Link color="error" href="#" onClick={() => Destroy(user.uuid)} sx={{ mt: 1 }}>
                   | Delete
                 </Link>
               </TableCell>

@@ -12,9 +12,10 @@ import Button from '@mui/material/Button'
 const url = process.env.REACT_APP_ENDPOINT;  
 
 // DELETE USER --- FUNCTION
-async function destroy(id) {
+async function Destroy(id) {
   await axios.delete(`${url}/api/product/${id}`)
   alert('deleted')
+
 }
 
 export default function Products() {
@@ -64,7 +65,7 @@ export default function Products() {
                 <Link color="primary" href={`product/edit/${item.uuid}`} sx={{ mt: 1 }}>
                   Edit | 
                 </Link>
-                <Link color="error" href="#" onClick={() => destroy(item.uuid)} sx={{ mt: 1 }}>
+                <Link color="error" href="#" onClick={() => Destroy(item.uuid)} sx={{ mt: 1 }}>
                    | Delete
                 </Link>
               </TableCell>
