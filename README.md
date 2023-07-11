@@ -21,14 +21,12 @@ You will be redirected to the login page when running the application. to test a
 
 email:
 ```
-admin@super
+admin@super.com
 ```
 Pass
 ```
 12345
 ```
-
-
 
 
 # Getting Started with Create React App and Redux
