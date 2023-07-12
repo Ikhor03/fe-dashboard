@@ -28,6 +28,8 @@ Pass
 12345
 ```
 
+or you can register with your own account.
+
 
 # Getting Started with Create React App and Redux
 
