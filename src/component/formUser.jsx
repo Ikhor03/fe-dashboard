@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Title from './Title';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
@@ -31,7 +30,7 @@ const FormUser = ({ action, id }) => {
             }
         };
         id && getUserById();
-    }, [id]);
+    }, [id, url]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -86,8 +85,7 @@ const FormUser = ({ action, id }) => {
 
     return (
         <div>
-            <Title>User</Title>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" >
                 {action}
             </Typography>
             <p style={{ color: "red" }}>{msg}</p>
@@ -163,7 +161,7 @@ const FormUser = ({ action, id }) => {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                 >
-                    Save
+                    {action}
                 </Button>
             </Box>
         </div>
